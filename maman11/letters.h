@@ -12,6 +12,9 @@
 #define DOUBLEQUOTE ('"')
 const char WHITESPACES_ARR[] = {' ', '\t', '\r', '\n', '\v'};
 
+typedef enum {false, true} flag;
+
+
 /* --- FUNCTION DEFINITIONS -------------------------------- */
 /* returns 1 if c is any of the following {' ', '\t', '\r', '\n', '\v', '\f'} 0 otherwise */
 short int isWhitespace(char c); 
@@ -24,3 +27,10 @@ short int isUpperCase(char c);
 
 /* returns 1 if c is in the range '0' -'9', 0 otherwise */
 short int isNumber(char c);
+
+/* flips a short int flag from 1 to 0, or from 0 to 1 */
+void flipFlag(short int* flag);
+
+char toLower(char c);
+
+char toUpper(char c);

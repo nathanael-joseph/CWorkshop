@@ -5,3 +5,7 @@ letters: letters.c letters.h
 
 run: letters
 	./letters
+
+scratchpad: scratchpad.c
+	gcc -g -ansi -Wall -pedantic scratchpad.c -o scratchpad
+	./scratchpad

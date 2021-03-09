@@ -1,3 +1,5 @@
+
+
 #include "letters.h"
 
 int main() 
@@ -10,41 +12,57 @@ int main()
 	char c;
 
 	while((c = getchar()) != EOF) {
-		/* process input */
-		
-		if(!isNumber(c)) {
 
-			if (c == FULLSTOP && !isInQuotations) {
-				flipFlag(&isStartOfSentence);
-			} 
-			else if (c == DOUBLEQUOTE) {
-				flipFlag(&isInQuotations);
-			} 
-			else if (isInQuotations || isStartOfSentence ) {
-				c = toUpper(c);
-			}
-			else {
-				c = toLower(c);
+
+		if(!isNumber(c)) {
+			
+			if(!isWhitespace(c)) {
+				if (c == FULLSTOP && !isInQuotations) {
+					flipFlag(&isStartOfSentence);
+				} 
+				else if (c == DOUBLEQUOTE) {
+					flipFlag(&isInQuotations);
+					isStartOfSentence = 0;
+				} 
+				else if (isInQuotations || isStartOfSentence ) {
+					c = toUpper(c);
+					isStartOfSentence = 0;
+				}
+				else {
+					c = toLower(c);
+				}
 			}
 			
-			printf("%c",c);
+			putchar(c);
 		}
 	} 
 
 	return 0;
 }
 
-/* TODO */
-char toUpper(char c);
 
-char toLower(char c);
+
+/* returns an Upper Case char of the same letter if applicable, otherwise, returns the argument */
+char toUpper(char c) {
+	if(isLowerCase(c)) {
+		c += UPPERCASE_START - LOWERCASE_START;
+	}
+	return c;
+}
+
+/* returns a lower case char of the same letter if applicable, otherwise, returns the argument */
+char toLower(char c) {
+	if(isUpperCase(c)) {
+		c += LOWERCASE_START - UPPERCASE_START;
+	}
+	return c;
+}
 
 
 /* flips a short int flag from 1 to 0, or from 0 to 1 */
 void flipFlag(short int* flag) {
-	static const short int one = 1;
-	*flag = one ^ *flag;
-	printf("*flag -> %d ", one ^ *flag);
+	static const short int TRUE = 1;
+	*flag = TRUE ^ *flag;
 }
 
 /* returns 1 if c is any of the following {' ', '\t', '\r', '\n', '\v', '\f'} 0 otherwise */
