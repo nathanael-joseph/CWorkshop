@@ -15,3 +15,7 @@ Assignment: Maman 11 Question 2
 #define DBL_ERROR_MARGIN (0.000001)
 #define DBL_PI (3.141592653589793) /* DBL_DIG = 15 */
 
+/* returns the value of argument "degrees" in radians */
+double toRadians(double degrees);
+/* approximates sin(x) with an error margin less than E-6 */
+double my_sin(double radians);
