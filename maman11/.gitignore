@@ -2,13 +2,13 @@
 *
 
 # unignor files with extension
-!*/*
+!*.*
 
 # unignore all directories
 !*/
 
 # unignore makefile
-!makefile
+!*/makefile
 
 #ignore .o
 *.o
