@@ -35,7 +35,7 @@ int isUpperCase(char c);
 /* returns 1 if c is in the range '0' -'9', 0 otherwise */
 int isNumber(char c);
 
-DECLARATIONS
+
 /* returns 1 if c is in the range 'a' -'z', 0 otherwise */
 char toLower(char c);
 /* returns 1 if c is in the range 'A' -'Z', 0 otherwise */
