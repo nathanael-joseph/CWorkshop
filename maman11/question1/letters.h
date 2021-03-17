@@ -4,7 +4,7 @@ Author: Nathanael J Y
 Last Modified: 17/03/2021
 Written for: The Open University Of Israel
 Course: 20465 - C Programming Workshop
-Asiignment: Maman 11 Question 1
+Assignment: Maman 11 Question 1
 -------------------------------------------------------------------------------
 */
 
@@ -35,7 +35,7 @@ int isUpperCase(char c);
 /* returns 1 if c is in the range '0' -'9', 0 otherwise */
 int isNumber(char c);
 
-
+DECLARATIONS
 /* returns 1 if c is in the range 'a' -'z', 0 otherwise */
 char toLower(char c);
 /* returns 1 if c is in the range 'A' -'Z', 0 otherwise */

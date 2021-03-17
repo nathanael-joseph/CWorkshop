@@ -4,7 +4,7 @@ Author: Nathanael J Y
 Last Modified: 17/03/2021
 Written for: The Open University Of Israel
 Course: 20465 - C Programming Workshop
-Asiignment: Maman 11 Question 1
+Assignment: Maman 11 Question 1
 -------------------------------------------------------------------------------
 */
 
