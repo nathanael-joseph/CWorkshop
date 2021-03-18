@@ -31,8 +31,8 @@ int main() {
 	}
 
 	/* Print result of my_sin(double d) and sin(double d) */
-	printf("my_sin of %.6f degrees is %.6f \n", deg, my_sin(toRadians(deg)));
-	printf("math.h sin of %.6f degrees is %.6f \n", deg, sin(toRadians(deg)));
+	printf("\nmy_sin of %.6f degrees is %.6f \n", deg, my_sin(toRadians(deg)));
+	printf("math.h sin of %.6f degrees is %.6f \n \n \n", deg, sin(toRadians(deg)));
 
 	return 0;
 }

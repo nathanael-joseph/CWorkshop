@@ -11,3 +11,18 @@ my_sin: my_sin.c my_sin.h
 
 run: my_sin
 	./my_sin
+
+test: my_sin
+	@echo "running tests..."
+	@echo "0" | ./my_sin > testResults.txt
+	@echo "25" | ./my_sin >> testResults.txt
+	@echo "-25" | ./my_sin >> testResults.txt
+	@echo "360" | ./my_sin >> testResults.txt
+	@echo "-360" | ./my_sin >> testResults.txt
+	@echo "12" | ./my_sin >> testResults.txt
+	@echo "49.75" | ./my_sin >> testResults.txt
+	@echo "-566.89997" | ./my_sin >> testResults.txt
+	@echo "992576" | ./my_sin >> testResults.txt
+	@echo "90" | ./my_sin >> testResults.txt
+	@echo "Done."
+	@echo "The results were printed to testResults.txt"

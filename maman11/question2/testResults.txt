@@ -1,0 +1,90 @@
+Welcome to my sine calculator. 
+This sine calculator is accurate within an error margin of E-6, 
+for all angles in degrees. 
+Enter an angle in degrees: 
+ >
+my_sin of 0.000000 degrees is 0.000000 
+math.h sin of 0.000000 degrees is 0.000000 
+ 
+ 
+Welcome to my sine calculator. 
+This sine calculator is accurate within an error margin of E-6, 
+for all angles in degrees. 
+Enter an angle in degrees: 
+ >
+my_sin of 25.000000 degrees is 0.422619 
+math.h sin of 25.000000 degrees is 0.422618 
+ 
+ 
+Welcome to my sine calculator. 
+This sine calculator is accurate within an error margin of E-6, 
+for all angles in degrees. 
+Enter an angle in degrees: 
+ >
+my_sin of -25.000000 degrees is -0.422619 
+math.h sin of -25.000000 degrees is -0.422618 
+ 
+ 
+Welcome to my sine calculator. 
+This sine calculator is accurate within an error margin of E-6, 
+for all angles in degrees. 
+Enter an angle in degrees: 
+ >
+my_sin of 360.000000 degrees is 0.000000 
+math.h sin of 360.000000 degrees is -0.000000 
+ 
+ 
+Welcome to my sine calculator. 
+This sine calculator is accurate within an error margin of E-6, 
+for all angles in degrees. 
+Enter an angle in degrees: 
+ >
+my_sin of -360.000000 degrees is -0.000000 
+math.h sin of -360.000000 degrees is 0.000000 
+ 
+ 
+Welcome to my sine calculator. 
+This sine calculator is accurate within an error margin of E-6, 
+for all angles in degrees. 
+Enter an angle in degrees: 
+ >
+my_sin of 12.000000 degrees is 0.207912 
+math.h sin of 12.000000 degrees is 0.207912 
+ 
+ 
+Welcome to my sine calculator. 
+This sine calculator is accurate within an error margin of E-6, 
+for all angles in degrees. 
+Enter an angle in degrees: 
+ >
+my_sin of 49.750000 degrees is 0.763232 
+math.h sin of 49.750000 degrees is 0.763232 
+ 
+ 
+Welcome to my sine calculator. 
+This sine calculator is accurate within an error margin of E-6, 
+for all angles in degrees. 
+Enter an angle in degrees: 
+ >
+my_sin of -566.899970 degrees is 0.452434 
+math.h sin of -566.899970 degrees is 0.452434 
+ 
+ 
+Welcome to my sine calculator. 
+This sine calculator is accurate within an error margin of E-6, 
+for all angles in degrees. 
+Enter an angle in degrees: 
+ >
+my_sin of 992576.000000 degrees is 0.829038 
+math.h sin of 992576.000000 degrees is 0.829038 
+ 
+ 
+Welcome to my sine calculator. 
+This sine calculator is accurate within an error margin of E-6, 
+for all angles in degrees. 
+Enter an angle in degrees: 
+ >
+my_sin of 90.000000 degrees is 1.000000 
+math.h sin of 90.000000 degrees is 1.000000 
+ 
+ 
