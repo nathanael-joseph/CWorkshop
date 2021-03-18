@@ -13,15 +13,22 @@ Assignment: Maman 11 Question 2
 int main() {
 
 	double deg;
+	int scannedSuccessfully;
 
 	/* print start message */
 	printf("Welcome to my sine calculator. \n");
-	printf("This sine calculator is accurate for all angles in degrees, \n");
-	printf("with and error margin of E-6. \n");
+	printf("This sine calculator is accurate within an error margin of E-6, \n");
+	printf("for all angles in degrees. \n");
 
 	/* scan double */
 	printf("Enter an angle in degrees: \n >");
-	scanf("%lf", &deg);
+	scannedSuccessfully = scanf("%lf", &deg);
+	while(scannedSuccessfully < 1) {	
+		while(getchar() != '\n');
+		printf("Could not parse a valid number.\n");
+		printf("Please enter an angle in degrees: \n >");
+		scannedSuccessfully = scanf("%lf", &deg);
+	}
 
 	/* Print result of my_sin(double d) and sin(double d) */
 	printf("my_sin of %.6f degrees is %.6f \n", deg, my_sin(toRadians(deg)));
