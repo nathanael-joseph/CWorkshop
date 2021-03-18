@@ -14,15 +14,14 @@ run: my_sin
 
 test: my_sin
 	@echo "running tests..."
-	@echo "0" | ./my_sin > testResults.txt
-	@echo "25" | ./my_sin >> testResults.txt
-	@echo "-25" | ./my_sin >> testResults.txt
-	@echo "360" | ./my_sin >> testResults.txt
-	@echo "-360" | ./my_sin >> testResults.txt
-	@echo "12" | ./my_sin >> testResults.txt
-	@echo "49.75" | ./my_sin >> testResults.txt
-	@echo "-566.89997" | ./my_sin >> testResults.txt
-	@echo "992576" | ./my_sin >> testResults.txt
-	@echo "90" | ./my_sin >> testResults.txt
-	@echo "Done."
-	@echo "The results were printed to testResults.txt"
+	@echo "0" | ./my_sin > results.txt
+	@echo "25" | ./my_sin >> results.txt
+	@echo "-25" | ./my_sin >> results.txt
+	@echo "360" | ./my_sin >> results.txt
+	@echo "-360" | ./my_sin >> results.txt
+	@echo "12" | ./my_sin >> results.txt
+	@echo "49.75" | ./my_sin >> results.txt
+	@echo "-566.89997" | ./my_sin >> results.txt
+	@echo "992576" | ./my_sin >> results.txt
+	@echo "90" | ./my_sin >> results.txt
+	@echo "Done. \nType 'cat results.txt' to see the output"
