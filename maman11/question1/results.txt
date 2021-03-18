@@ -5,15 +5,15 @@
 -----------------------------------------------------------------------------------------------------
 " TEST ONE - THE FIRST CHARACTER AFTER '.' MUST BE UPPERCASE "
 =====================================================================================================
-The. first. character must be upper.case. regardless of.	w.
-h			. 	ite.		
+the. First. Character must be upper.Case. Regardless of.	W.
+H			. 	Ite.		
 
 
-space.
+Space.
 -----------------------------------------------------------------------------------------------------
 " EXPECTED RESULT "
 =====================================================================================================
-The. First. Character must be upper.Case. Regardless of.	W.
+the. First. Character must be upper.Case. Regardless of.	W.
 H			. 	Ite.		
 
 
@@ -24,12 +24,12 @@ Space.
 -----------------------------------------------------------------------------------------------------
 " TEST TWO - ALL OTHER CHARCTERS NOT IN QUOTATIONS MUST BE LOWERCASE "
 =====================================================================================================
-.tHIS TEXT 		shOUlD 
+.This text 		should 
 
-BE 
-lowerCASE, "but th
+be 
+lowercase, "BUT TH
 
-is shouldn't" BE.
+IS SHOULDN'T" be.
 -----------------------------------------------------------------------------------------------------
 " EXPECTED RESULT "
 =====================================================================================================
@@ -45,9 +45,9 @@ IS SHOULDN'T" be.
 -----------------------------------------------------------------------------------------------------
 " TEST THREE - NUMBERS SHOULD ALWAYS BE IGNORED "
 =====================================================================================================
-.No n375umber8s should "BE 
-11incl8947uded 384 in" h3er3e. 5476
-5 9 !! 484 && ^ 123
+.No numbers should "BE 
+INCLUDED  IN" here. 
+  !!  && ^ 
 -----------------------------------------------------------------------------------------------------
 " EXPECTED RESULT "
 =====================================================================================================
@@ -61,14 +61,14 @@ INCLUDED  IN" here.
 " TEST FOUR - TEST EXAMPLE PROVIDED "
 =====================================================================================================
 .I am young. You are young. All of us are young. 
-"I think we  need   some help. Please" HELP. NO,    NO   NO, 
-I DO NOT
-     NEED HELP
+"I THINK WE  NEED   SOME HELP. PLEASE" help. No,    no   no, 
+i do not
+     need help
 
-WHATSOEVER.  
-"Today’s date is
-      15/2/2021"... 
-I am 18  years old, are you 20 years old? Maybe    30 year
+whatsoever.  
+"TODAY’S DATE IS
+      //"... 
+I am   years old, are you  years old? maybe     year
 -----------------------------------------------------------------------------------------------------
 " EXPECTED RESULT "
 =====================================================================================================

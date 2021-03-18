@@ -15,5 +15,6 @@ run: letters
 	./letters
 
 test: letters
-	#TODO
-
+	@echo "running test..."
+	@./letters < test.txt > results.txt
+	@echo "Done. \nType 'cat results.txt' to see the output"
