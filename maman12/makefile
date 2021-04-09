@@ -6,10 +6,21 @@
 # Assignment: Maman 12 Question 1
 #-------------------------------------------------------------------------------
 
-buffer: buffer.c buffer.h
-	@echo "compiling"
-	gcc -g -ansi -Wall -pedantic buffer.c -o buffer
-	@echo "compiled successfully"
 
-run: buffer
-	./buffer
+objects = myText.o linkedList.o buffer.o
+debugFlags = -g -ansi -Wall -pedantic
+
+
+myText: $(objects)
+	gcc $(debugFlags) $(objects) -o myText
+
+myText.o: myText.c myText.h 
+	gcc -c $(debugFlags) myText.c 
+
+linkedList.o: linkedList.c linkedList.h
+	gcc -c $(debugFlags) linkedList.c 
+
+buffer.o: buffer.c buffer.h
+	gcc -c $(debugFlags) buffer.c 
+
+
