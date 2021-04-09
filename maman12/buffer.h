@@ -1,7 +1,7 @@
 /*
 -------------------------------------------------------------------------------
 Author: Nathanael J Y
-Last Modified: 08/04/2021
+Last Modified: 09/04/2021
 Written for: The Open University Of Israel
 Course: 20465 - C Programming Workshop
 Assignment: Maman 12 Question 1
@@ -32,19 +32,19 @@ typedef struct {
 Returns a pointer to a new instance of a Buffer struct, 
 the caller is responsible for deallocation.
 */
-Buffer *BufferInit();
+Buffer *bufferInit();
 
 /* 
 Adds the argument c to the buffer. Returns EOF if the 
 insert failed, otherwise returns argument c.
 */
-char BufferWrite(Buffer *buffer, char c);
+char bufferWriteChar(Buffer *buffer, char c);
 
 /* 
 Returns the next char from the buffer or EOF if the 
 buffer has been read to the end.
 */
-char BufferRead(Buffer *buffer);
+char bufferReadChar(Buffer *buffer);
 
 
 #endif	

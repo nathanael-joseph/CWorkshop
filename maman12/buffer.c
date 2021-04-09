@@ -1,7 +1,7 @@
 /*
 -------------------------------------------------------------------------------
 Author: Nathanael J Y
-Last Modified: 08/04/2021
+Last Modified: 09/04/2021
 Written for: The Open University Of Israel
 Course: 20465 - C Programming Workshop
 Assignment: Maman 12 Question 1
@@ -17,34 +17,47 @@ Assignment: Maman 12 Question 1
 Returns a pointer to a new instance of a Buffer struct, 
 the caller is responsible for deallocation.
 */
-Buffer *BufferInit() {
-	Buffer *bfr = (Buffer*)malloc(sizeof(Buffer));
-	if(bfr != NULL) {
-		bfr->data = (char*)calloc(BUFFER_SIZE_INIT, sizeof(char));
-		if(bfr->data == NULL) {
-			return NULL;
+Buffer *bufferInit() {
+	Buffer *buffer = (Buffer*)malloc(sizeof(Buffer));
+	if(buffer != NULL) {
+		buffer->data = (char*)calloc(BUFFER_SIZE_INIT, sizeof(char));
+		if(buffer->data == NULL) {
+			return NULL; /* could not create data array */
 		}
-		bfr->size = BUFFER_SIZE_INIT;
-		bfr->currentSize = 0;
-		bfr->read = 0;
+		buffer->size = BUFFER_SIZE_INIT;
+		buffer->currentSize = 0;
+		buffer->read = 0;
 	}
-	return bfr;
+	return buffer;
 }
 
 /* 
 Adds the argument c to the buffer. Returns EOF if the 
 insert failed, otherwise returns argument c.
 */
-char BufferWrite(Buffer *buffer, char c) {
-	/* TODO */
-	return EOF;
+char bufferWriteChar(Buffer *buffer, char c) {
+
+	if(buffer->currentSize == buffer->size) {
+		buffer->data = realloc(data, (buffer->size)*2);
+	} 
+
+	if (buffer->data != NULL) {
+		buffer->data[currentSize++] = c;
+	} else {
+		c = EOF;
+	}
+	
+	return c;
 }
 
 /* 
 Returns the next char from the buffer or EOF if the 
 buffer has been read to the end.
 */
-char BufferRead(Buffer *buffer) {
+char bufferReadChar(Buffer *buffer) {
 	/* TODO */
+	if(buffer->read < buffer->currentSize) {
+		return buffer->data[buffer->read++];
+	}
 	return EOF;
 }
