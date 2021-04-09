@@ -38,11 +38,12 @@ insert failed, otherwise returns argument c.
 char bufferWriteChar(Buffer *buffer, char c) {
 
 	if(buffer->currentSize == buffer->size) {
-		buffer->data = realloc(data, (buffer->size)*2);
+		buffer->size *= 2;
+		buffer->data = realloc(buffer->data, buffer->size);
 	} 
 
 	if (buffer->data != NULL) {
-		buffer->data[currentSize++] = c;
+		buffer->data[buffer->currentSize++] = c;
 	} else {
 		c = EOF;
 	}
