@@ -35,20 +35,19 @@ Buffer *bufferInit() {
 Adds the argument c to the buffer. Returns EOF if the 
 insert failed, otherwise returns argument c.
 */
-char bufferWriteChar(Buffer *buffer, char c) {
+int bufferWriteChar(Buffer *buffer, char c) {
 
 	if(buffer->currentSize == buffer->size) {
 		buffer->size *= 2;
 		buffer->data = realloc(buffer->data, buffer->size);
-	} 
-
-	if (buffer->data != NULL) {
-		buffer->data[buffer->currentSize++] = c;
-	} else {
-		c = EOF;
+		if (buffer->data == NULL) {
+			return -1;
+		}
 	}
-	
-	return c;
+
+	buffer->data[buffer->currentSize++] = c;
+
+	return 0;
 }
 
 /* 

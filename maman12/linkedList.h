@@ -15,6 +15,37 @@ Assignment: Maman 12 Question 1
 
 /* --- TYPE DEFINITIONS ----------------------------------- */
 
+typedef node Node;
+
+struct node {
+	char data;
+	Node *next;
+}
+
+typedef struct {
+	Node *head;
+	Node *tail;
+} LinkedList;
+
 /* --- FUNCTION DECLARATIONS ------------------------------ */
+
+/* 
+Returns a pointer to a new instance of a Buffer struct, 
+the caller is responsible for deallocation.
+*/
+LinkedList *linkedListInit();
+
+/* 
+Adds the argument c to the linkedList. Returns -1 if the 
+write failed, otherwise returns 0.
+*/
+int linkedListWriteChar(LinkedList *linkedList, char c);
+
+/* 
+Returns the next char from the linkedList or EOF if the 
+linkedList has been read to the end.
+*/
+char linkedListReadChar(LinkedList *linkedList);
+
 
 #endif

@@ -35,10 +35,10 @@ the caller is responsible for deallocation.
 Buffer *bufferInit();
 
 /* 
-Adds the argument c to the buffer. Returns EOF if the 
-insert failed, otherwise returns argument c.
+Adds the argument c to the buffer. Returns -1 if the 
+write failed, otherwise returns 0.
 */
-char bufferWriteChar(Buffer *buffer, char c);
+int bufferWriteChar(Buffer *buffer, char c);
 
 /* 
 Returns the next char from the buffer or EOF if the 

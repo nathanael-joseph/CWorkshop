@@ -23,4 +23,5 @@ linkedList.o: linkedList.c linkedList.h
 buffer.o: buffer.c buffer.h
 	gcc -c $(debugFlags) buffer.c 
 
-
+clean:
+	rm -f $(objects)
