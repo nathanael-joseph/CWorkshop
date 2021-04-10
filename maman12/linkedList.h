@@ -23,8 +23,9 @@ struct node {
 }
 
 typedef struct {
-	Node *head;
+	Node *head; /* head node will be empty node, do not read */
 	Node *tail;
+	Node *read;
 } LinkedList;
 
 /* --- FUNCTION DECLARATIONS ------------------------------ */
@@ -39,13 +40,13 @@ LinkedList *linkedListInit();
 Adds the argument c to the linkedList. Returns -1 if the 
 write failed, otherwise returns 0.
 */
-int linkedListWriteChar(LinkedList *linkedList, char c);
+int linkedListWriteChar(LinkedList *list, char c);
 
 /* 
 Returns the next char from the linkedList or EOF if the 
 linkedList has been read to the end.
 */
-char linkedListReadChar(LinkedList *linkedList);
+char linkedListReadChar(LinkedList *list);
 
 
 #endif

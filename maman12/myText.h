@@ -11,6 +11,9 @@ Assignment: Maman 12 Question 1
 #ifndef MYTEXT_H
 #define MYTEXT_H
 
+#include <stdio.h>
+#include "buffer.h"
+#include "linkedList.h"
 
 /* --- CONSTANTS ------------------------------------------ */
 

@@ -19,9 +19,9 @@ the caller is responsible for deallocation.
 */
 Buffer *bufferInit() {
 	Buffer *buffer = (Buffer*)malloc(sizeof(Buffer));
-	if(buffer != NULL) {
+	if (buffer != NULL) {
 		buffer->data = (char*)calloc(BUFFER_SIZE_INIT, sizeof(char));
-		if(buffer->data == NULL) {
+		if (buffer->data == NULL) {
 			return NULL; /* could not create data array */
 		}
 		buffer->size = BUFFER_SIZE_INIT;
@@ -37,7 +37,7 @@ insert failed, otherwise returns argument c.
 */
 int bufferWriteChar(Buffer *buffer, char c) {
 
-	if(buffer->currentSize == buffer->size) {
+	if (buffer->currentSize == buffer->size) {
 		buffer->size *= 2;
 		buffer->data = realloc(buffer->data, buffer->size);
 		if (buffer->data == NULL) {
@@ -55,8 +55,7 @@ Returns the next char from the buffer or EOF if the
 buffer has been read to the end.
 */
 char bufferReadChar(Buffer *buffer) {
-	/* TODO */
-	if(buffer->read < buffer->currentSize) {
+	if (buffer->read < buffer->currentSize) {
 		return buffer->data[buffer->read++];
 	}
 	return EOF;
