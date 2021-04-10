@@ -14,6 +14,7 @@ Assignment: Maman 12 Question 1
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "buffer.h"
 
 /* --- CONSTANTS ------------------------------------------ */
 
@@ -22,7 +23,7 @@ Assignment: Maman 12 Question 1
 typedef struct node Node;
 
 struct node {
-	char data;
+	Buffer *buffer;
 	Node *next;
 };
 
@@ -35,8 +36,16 @@ typedef struct {
 /* --- FUNCTION DECLARATIONS ------------------------------ */
 
 /* 
+Returns a pointer to a new instance of a Node struct, 
+the caller is responsible for deallocation. Returns NULL
+if memory allocation failed.
+*/
+void *nodeInit();
+
+/* 
 Returns a pointer to a new instance of a Buffer struct, 
-the caller is responsible for deallocation.
+the caller is responsible for deallocation. Returns NULL
+if memory allocation failed.
 */
 void *linkedListInit();
 

@@ -13,9 +13,22 @@ Assignment: Maman 12 Question 1
 
 /* --- FUNCTION DEFINITIONS -------------------------------- */
 
+/* returns true if the buffer's data array is full, false otherwise */
+boolean isFullBuffer(void *buffer) {
+	Buffer *bfr = (Buffer*)buffer;	
+	return bfr->currentSize == bfr->size;
+}
+
+/* Returns true if buffer's data array has been completely read, false otherwise */
+boolean hasBeenReadBuffer(void *buffer) {
+	Buffer *bfr = (Buffer*)buffer;
+	return bfr->read == bfr->currentSize;
+}
+
 /* 
 Returns a pointer to a new instance of a Buffer struct, 
-the caller is responsible for deallocation.
+the caller is responsible for deallocation. Returns NULL
+if memory allocation failed.
 */
 void *bufferInit() {
 
@@ -41,21 +54,13 @@ Adds the argument c to the buffer. Returns EOF if the
 insert failed, otherwise returns argument c.
 */
 int bufferWriteChar(void *buffer, char c) {
-
 	Buffer *bfr = (Buffer*)buffer;
 
-	if (bfr->currentSize == bfr->size) {
-
-		bfr->size *= 2;
-		bfr->data = realloc(bfr->data, bfr->size);
-
-		if (bfr->data == NULL) {
-			return -1;
-		}
+	if (isFullBuffer(bfr)) {
+		return -1;
 	}
 
 	bfr->data[bfr->currentSize++] = c;
-
 	return 0;
 }
 

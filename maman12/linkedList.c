@@ -13,9 +13,33 @@ Assignment: Maman 12 Question 1
 
 /* --- FUNCTION DEFINITIONS -------------------------------- */
 
+
+/* 
+Returns a pointer to a new instance of a Node struct, 
+the caller is responsible for deallocation. Returns NULL
+if memory allocation failed.
+*/
+void *nodeInit(){
+	
+	Node *node = malloc(sizeof(*node));
+	
+	if (node != NULL) {
+
+		node->next = NULL;
+
+		node->buffer = bufferInit();
+		if(node->buffer == NULL) {
+			return NULL; /* node's buffer could not be created */
+		}
+	} 
+
+	return node;
+}
+
 /* 
 Returns a pointer to a new instance of a LinkedList struct, 
-the caller is responsible for deallocation.
+the caller is responsible for deallocation. Returns NULL
+if memory allocation failed.
 */
 void *linkedListInit() {
 
@@ -23,8 +47,7 @@ void *linkedListInit() {
 
 	if (list != NULL) {	
 
-		list->head = malloc(sizeof(*list->head));
-
+		list->head = nodeInit();
 		if (list->head == NULL) {
 			return NULL; /* head node could not be created */
 		}
@@ -43,15 +66,23 @@ write failed, otherwise returns 0.
 int linkedListWriteChar(void *linkedList, char c) {
 
 	LinkedList *list = (LinkedList *)linkedList;
+	
+	Buffer *currentBuffer = list->tail->buffer;
+	
+	if (isFullBuffer(currentBuffer)) {
+		
+		list->tail->next = nodeInit();
+		if (list->tail->next == NULL) {
+			return -1;  /* next node could not be created*/
+		}
 
-	list->tail->next = malloc(sizeof(*list->tail->next));
-	if (list->tail->next == NULL) {
-		return -1;
+		list->tail = list->tail->next;
+		currentBuffer = list->tail->buffer;
+		
 	}
-
-	list->tail = list->tail->next;
-	list->tail->data = c;
-
+	
+	bufferWriteChar(currentBuffer, c);
+	
 	return 0;
 }
 
@@ -62,11 +93,18 @@ linkedList has been read to the end.
 char linkedListReadChar(void *linkedList) {
 
 	LinkedList *list = (LinkedList *)linkedList;
+	Buffer *currentBuffer = list->read->buffer;
 
-	if((list->read = list->read->next) != NULL) {
-		return list->read->data;
+	if(hasBeenReadBuffer(currentBuffer)) {
+		
+		list->read = list->read->next;
+		if(list->read  == NULL) {
+			return EOF;
+		}
+
+		currentBuffer = list->read->buffer;
 	}
 
-	return EOF;
+	return bufferReadChar(currentBuffer);
 }
 

@@ -8,26 +8,15 @@ Assignment: Maman 12 Question 1
 -------------------------------------------------------------------------------
 */
 
-#ifndef MYTEXT_H
-#define MYTEXT_H
-
-#include <stdio.h>
-#include "dynamicBuffer.h"
-#include "linkedList.h"
-
-/* --- CONSTANTS ------------------------------------------ */
-
-#define MAX_LINE_LENGTH (60)
-#define NEW_LINE ('\n')
+#ifndef BOOLEAN_H
+#define BOOLEAN_H
 
 /* --- TYPE DEFINITIONS ----------------------------------- */
 
 typedef enum {
-	dynamicBuffer = 1,
-	linkedList = 2
-} dataStructure;
-
-/* --- FUNCTION DECLARATIONS ------------------------------ */
+	false,
+	true
+} boolean;
 
 
 #endif
