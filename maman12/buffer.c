@@ -1,7 +1,7 @@
 /*
 -------------------------------------------------------------------------------
 Author: Nathanael J Y
-Last Modified: 09/04/2021
+Last Modified: 10/04/2021
 Written for: The Open University Of Israel
 Course: 20465 - C Programming Workshop
 Assignment: Maman 12 Question 1
@@ -17,17 +17,22 @@ Assignment: Maman 12 Question 1
 Returns a pointer to a new instance of a Buffer struct, 
 the caller is responsible for deallocation.
 */
-Buffer *bufferInit() {
-	Buffer *buffer = (Buffer*)malloc(sizeof(Buffer));
+void *bufferInit() {
+
+	Buffer *buffer = malloc(sizeof(*buffer));
+
 	if (buffer != NULL) {
-		buffer->data = (char*)calloc(BUFFER_SIZE_INIT, sizeof(char));
+		buffer->data = calloc(BUFFER_SIZE_INIT, sizeof(*buffer->data));
+
 		if (buffer->data == NULL) {
 			return NULL; /* could not create data array */
 		}
+
 		buffer->size = BUFFER_SIZE_INIT;
 		buffer->currentSize = 0;
 		buffer->read = 0;
 	}
+
 	return buffer;
 }
 
@@ -35,17 +40,21 @@ Buffer *bufferInit() {
 Adds the argument c to the buffer. Returns EOF if the 
 insert failed, otherwise returns argument c.
 */
-int bufferWriteChar(Buffer *buffer, char c) {
+int bufferWriteChar(void *buffer, char c) {
 
-	if (buffer->currentSize == buffer->size) {
-		buffer->size *= 2;
-		buffer->data = realloc(buffer->data, buffer->size);
-		if (buffer->data == NULL) {
+	Buffer *bfr = (Buffer*)buffer;
+
+	if (bfr->currentSize == bfr->size) {
+
+		bfr->size *= 2;
+		bfr->data = realloc(bfr->data, bfr->size);
+
+		if (bfr->data == NULL) {
 			return -1;
 		}
 	}
 
-	buffer->data[buffer->currentSize++] = c;
+	bfr->data[bfr->currentSize++] = c;
 
 	return 0;
 }
@@ -54,9 +63,13 @@ int bufferWriteChar(Buffer *buffer, char c) {
 Returns the next char from the buffer or EOF if the 
 buffer has been read to the end.
 */
-char bufferReadChar(Buffer *buffer) {
-	if (buffer->read < buffer->currentSize) {
-		return buffer->data[buffer->read++];
+char bufferReadChar(void *buffer) {
+
+	Buffer *bfr = (Buffer*)buffer;
+
+	if (bfr->read < bfr->currentSize) {
+		return bfr->data[bfr->read++];
 	}
+
 	return EOF;
 }
