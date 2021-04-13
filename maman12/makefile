@@ -7,7 +7,7 @@
 #-------------------------------------------------------------------------------
 
 
-objects = myText.o linkedList.o buffer.o dynamicBuffer.o
+objects = myText.o linkedList.o buffer.o dynamicBuffer.o dsFactory.o
 debugFlags = -g -ansi -Wall -pedantic
 
 
@@ -16,6 +16,9 @@ myText: $(objects)
 
 myText.o: myText.c myText.h 
 	gcc -c $(debugFlags) myText.c 
+
+dsFactory.o: dsFactory.c dsFactory.h
+	gcc -c $(debugFlags) dsFactory.c 
 
 linkedList.o: linkedList.c linkedList.h
 	gcc -c $(debugFlags) linkedList.c 

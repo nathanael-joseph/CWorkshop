@@ -14,6 +14,7 @@ Assignment: Maman 12 Question 1
 #include <stdio.h>
 #include "dynamicBuffer.h"
 #include "linkedList.h"
+#include "dsFactory.h"
 
 /* --- CONSTANTS ------------------------------------------ */
 
@@ -22,10 +23,6 @@ Assignment: Maman 12 Question 1
 
 /* --- TYPE DEFINITIONS ----------------------------------- */
 
-typedef enum {
-	dynamicBuffer = 1,
-	linkedList = 2
-} dataStructure;
 
 /* --- FUNCTION DECLARATIONS ------------------------------ */
 
