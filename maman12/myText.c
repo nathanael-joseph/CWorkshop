@@ -1,7 +1,7 @@
 /*
 -------------------------------------------------------------------------------
 Author: Nathanael J Y
-Last Modified: 10/04/2021
+Last Modified: 13/04/2021
 Written for: The Open University Of Israel
 Course: 20465 - C Programming Workshop
 Assignment: Maman 12 Question 1
@@ -15,7 +15,7 @@ Assignment: Maman 12 Question 1
 /* prints greeting and input instructions to stdout */
 static void printStartMessage();
 /* prints contextualised error message to stdout */
-static void printErrorMessage(DataStructureType dsType, long unsigned int);
+static void printErrorMessage(DataStructureType dsType, long unsigned int bytesStored);
 /* 
 reads text from stdin and writes it to the data structure.
 if a malloc error occurs, an error message is printed and 
