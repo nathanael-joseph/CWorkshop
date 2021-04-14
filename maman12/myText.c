@@ -18,10 +18,9 @@ static void printStartMessage();
 static void printErrorMessage(DataStructureType dsType, long unsigned int bytesStored);
 /* 
 reads text from stdin and writes it to the data structure.
-if a malloc error occurs, an error message is printed and 
-exit(-1) is called.
+returns -1 if a malloc error occurs, 0 otherwise. 
 */
-static void readText(DataStructure *ds);
+static int readText(DataStructure *ds, long unsigned int *bytesStored);
 /* reads text from the data structure and prints it to stdout */
 static void writeText(DataStructure *ds);
 /* gets user input for selected data structure */
@@ -30,7 +29,8 @@ static DataStructureType getInputDataStructure(void);
 /* --- MAIN --------------------------------------------------------- */
 int main(void) {
 
-	
+	long unsigned int bytesStored;
+	int hasError;
 	DataStructureType dsType; /* enum value to store the type */
 	DataStructure *ds; /* pointer to data structure */
 
@@ -40,11 +40,18 @@ int main(void) {
 
 	ds = buildDataStructure(dsType);
 
-	readText(ds);
+	hasError = readText(ds, &bytesStored);
 	
-	writeText(ds);
+	if(hasError) {
+		printErrorMessage(ds->type, bytesStored);
+	} else {
+		writeText(ds);	
+		printf("\n-----------------------------------------------\n");
+		printf("TOTAL bytes stored: %lu \n", bytesStored);
+	}
+	
 
-	return 0;
+	return hasError;
 
 }
 
@@ -52,7 +59,7 @@ int main(void) {
 
 /* prints greeting and input instructions to stdout */
 static void printStartMessage() {
-	printf("Please choose a datastructure. The data strucutures available are: \n");
+	printf("\nPlease choose a datastructure. The data strucutures available are: \n");
 	printf(" %d - %s - Grows exponencially (2^n) initial size: 256 bytes.\n", 
 		dynamicBuffer,
 		getDataStructureDisplayName(dynamicBuffer));
@@ -73,25 +80,25 @@ static void printErrorMessage(DataStructureType dsType, long unsigned int bytesS
 
 /* 
 reads text from stdin and writes it to the data structure.
-if a malloc error occurs, an error message is printed and 
-exit(-1) is called.
+returns -1 if a malloc error occurs, 0 otherwise. 
 */
-static void readText(DataStructure *ds) {
+static int readText(DataStructure *ds, long unsigned int *bytesStored) {
 
 	char c;
-	long unsigned int bytesCounter = 0;
 	int hasError = 0;
-
+	*bytesStored = 0;
+	
 	while ((c = getchar()) != EOF) {
 		if (c != NEW_LINE) {
 			 hasError = ds->writeChar(ds->this, c);
 			 if (hasError) {
-			 	printErrorMessage(ds->type, bytesCounter);
-			 	exit(-1);
+			 	return -1;
 			 }
-			 bytesCounter++;
+			 (*bytesStored)++;
 		}
 	}
+
+	return 0;
 }
 
 /* reads text from the data structure and prints it to stdout */
@@ -100,6 +107,8 @@ static void writeText(DataStructure *ds) {
 	char c;
 	long unsigned int counter = 0;
 
+	printf("\n\n");
+	
 	while((c = ds->readChar(ds->this)) != EOF) {
 		putchar(c);
 		counter++;
@@ -123,6 +132,6 @@ static DataStructureType getInputDataStructure(void) {
 		printf("Please enter either %d or %d: \n >", dynamicBuffer, linkedList);
 		scannedSuccessfully = scanf("%d", &dsType);
 	}
-
+	printf("\n");
 	return dsType;
 }

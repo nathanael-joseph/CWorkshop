@@ -54,7 +54,7 @@ char *getDataStructureDisplayName(DataStructureType type) {
 	switch(type)
 	{
 		case dynamicBuffer:
-			return "Dynamic Buyffer";
+			return "Dynamic Buffer";
 		case linkedList:
 			return "Linked List";
 		default :
