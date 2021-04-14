@@ -1,8 +1,2 @@
-test1_dynamic_buffer.txt
-test2_linked_list.txt
-test3_dynamic_buffer_big_file.txt
-test4_linked_list_big_file.txt
-results1.txt
-results2.txt
-results3.txt
-results4.txt
+testfiles/
+readme.txt
