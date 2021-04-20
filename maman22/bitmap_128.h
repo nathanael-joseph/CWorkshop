@@ -31,6 +31,10 @@ typedef struct {
 
 /* --- FUNCTION DECLARATIONS ------------------------------ */
 
+/*
+TODO: modify bitmap init function to trhow an error, instead of returning NULL
+*/
+
 /* returns a pointer to a new insatnce of a bitmap, or null if malloc fails */
 Bitmap_128 *bitmap_128_init();
 /* returns the value of a single bit in the bitmap for a given index */
