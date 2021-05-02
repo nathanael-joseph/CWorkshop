@@ -13,3 +13,4 @@
 #ignore .o
 *.o
 
+/scratchpad
