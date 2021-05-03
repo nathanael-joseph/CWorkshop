@@ -6,15 +6,30 @@
 # Assignment: Maman 22 Question 1
 #-------------------------------------------------------------------------------
 
-objects = set.o myset.o bitmap_128.o
+objects = set.o bitmap_128.o stringutils.o charutils.o myset.o 
 debugFlags = -g -ansi -Wall -pedantic
 
-set: set.c set.h
+All: $(objects)
+	gcc $(debugFlags) $(objects) -o myset
+	rm $(objects)
+
+myset.o: myset.c myset.h
+	gcc $(debugFlags) -c myset.c
+
+charutils.o: charutils.c charutils.h
+	gcc $(debugFlags) -c charutils.c
+	
+stringutils.o: stringutils.c stringutils.h
+	gcc $(debugFlags) -c stringutils.c
+
+set.o: set.c set.h
 	gcc $(debugFlags) -c set.c
 
-bitmap_128: bitmap_128.c bitmap_128.h
+bitmap_128.o: bitmap_128.c bitmap_128.h
 	gcc $(debugFlags) -c bitmap_128.c
 
 clean:
 	rm $(objects)
 
+run: All
+	./myset

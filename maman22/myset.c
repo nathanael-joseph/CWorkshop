@@ -13,7 +13,18 @@ Assignment: Maman 22 Question 1
 /* --- PRIVATE FUNCTION DECLARATIONS -------------------------------- */
 /* --- MAIN --------------------------------------------------------- */
 int main() {
-	printf("word size is : %d", sizeof(int));
+
+	int i;
+	String test = "o n e, two ,,four   ,";
+	String *result;
+	int resultLength = string_split(test,',',&result);
+
+	for(i = 0; i < resultLength; i++) {
+		printf("result[%d] is: [%s] , len is [%d]\n",i,result[i], strlen(result[i]));
+	}
+
+
+	return 0;
 }
 /* --- FUNCTION DEFINITIONS ----------------------------------------- */
 

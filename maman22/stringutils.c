@@ -1,7 +1,7 @@
 /*
 -------------------------------------------------------------------------------
 Author: Nathanael J Y
-Last Modified: 25/04/2021
+Last Modified: 03/05/2021
 Written for: The Open University Of Israel
 Course: 20465 - C Programming Workshop
 Assignment: Maman 22 Question 1
@@ -12,62 +12,77 @@ Assignment: Maman 22 Question 1
 
 /* --- FUNCTION DEFINITIONS ----------------------------------------- */
 
+Boolean string_tryParseInt(const String s, int *out) {
+	/* TODO */
+	return 0;
+}
+
+/* 
+places an array of strings to "out" parameter, where each element is 
+a sdubstring of s, split by the deliminator, 
+and returns the number of elements in the array.
+*/
+int string_split(const String s, char deliminator, String **out) {
+
+	int delimCounter = 0;
+	int i, j, k;
+	String temp = calloc(sizeof(*temp),1);
+
+	for(i = 0; i < strlen(s); i++) {
+		if (s[i] == deliminator) {
+			delimCounter++;
+		}
+	}
+
+	*out = calloc(sizeof(**out), delimCounter + 1);
+
+	/*	i = index of deliminator, 
+		j = beginning of substring, 
+		k = index of out array 
+	*/ 
+	for(i = 0, j = 0, k = 0; i < strlen(s); i++) {
+		if (s[i] == deliminator) {
+			temp = realloc(temp, i-j + 1);
+			temp[i-j] = NULL_CHAR; /* terminate string */
+			temp = strncpy(temp, s + j, i - j);
+			(*out)[k++] = string_trim(temp); /* trim calls malloc internally */
+			j = i + 1;
+		}
+	}
+
+	temp = realloc(temp, i-j + 1);
+	temp[i-j] = NULL_CHAR; /* terminate string */
+	temp = strncpy(temp, s + j, i - j);
+	(*out)[k++] = string_trim(temp); /* trim calls malloc internally */
+
+	free(temp);
+
+	return k;
+}
+
+
+
 /* 
 returns the a new string, equivilant to  the argument string s,
 with all leading and trailing whitespace characters reoved 
 */
-String string_Trim(const String s) {
+String string_trim(const String s) {
 	int len = strlen(s);
 	int left = 0;
 	int right = len - 1;
+	int resultLength;
 
 	String result; 
 
-	while(start < len && isWhitespace(s[left]))
+	while(left < len && char_isWhitespace(s[left]))
 		left++;
-	while(right > 0  && isWhitespace(s[right]))
+	while(right > left  && char_isWhitespace(s[right]))
 		right--;
 
-	result = calloc(sizeof(*result), right - left + 2);
+	resultLength = right - left + 1;
 
-	/* TODO */
+	result = calloc(sizeof(*result), resultLength + 1);
+	result = strncpy(result, s + left, resultLength);
 
 	return result;
-
-
-}
-
-/* TODO - change these function names to reflect that they are for Char only, not strings */
-
-/* returns 1 if c is any of the following {' ', '\t', '\r', '\n', '\v', '\f'}, 0 otherwise */
-Boolean isWhitespace(char c) {
-	int i;
-	for( i = 0; i < WHITESPACES_ARR_LEN; i++) {
-		if (c == WHITESPACES_ARR[i])
-			return true;
-	}
-	return false;
-}
-
-/* returns 1 if c is in the range 'a' -'z', 0 otherwise */
-Boolean isLowerCase(char c) {
-	if(c >= LOWERCASE_START && c <= LOWERCASE_END) 
-		return true;
-	return false;
-}
-
-/* returns 1 if c is in the range 'A' -'Z', 0 otherwise */
-Boolean isUpperCase(char c) 
-{
-	if(c >= UPPERCASE_START && c <= UPPERCASE_END) 
-		return true;
-	return false;
-}
-
-/* returns 1 if c is in the range '0' -'9', 0 otherwise */
-Boolean isNumber(char c) 
-{
-	if(c >= NUMBERS_START && c <= NUMBERS_END)
-		return true;
-	return false;
 }
