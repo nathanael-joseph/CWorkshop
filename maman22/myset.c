@@ -15,13 +15,10 @@ Assignment: Maman 22 Question 1
 int main() {
 
 	int i;
-	String test = "o n e, two ,,four   ,";
-	String *result;
-	int resultLength = string_split(test,',',&result);
+	String test = "-  405    ";
+	Boolean b = string_tryParseInt(test, &i);
 
-	for(i = 0; i < resultLength; i++) {
-		printf("result[%d] is: [%s] , len is [%d]\n",i,result[i], strlen(result[i]));
-	}
+	printf("success = [%d],  i = [%d] \n",b,i);
 
 
 	return 0;

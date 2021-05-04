@@ -1,7 +1,7 @@
 /*
 -------------------------------------------------------------------------------
 Author: Nathanael J Y
-Last Modified: 03/05/2021
+Last Modified: 04/05/2021
 Written for: The Open University Of Israel
 Course: 20465 - C Programming Workshop
 Assignment: Maman 22 Question 1
@@ -14,7 +14,35 @@ Assignment: Maman 22 Question 1
 
 Boolean string_tryParseInt(const String s, int *out) {
 	/* TODO */
-	return 0;
+
+	int result, sign, i;
+	result = 0; sign = 1; i = 0;
+	String trimmed_s = string_trim(s);
+
+	if (! char_isNumber(trimmed_s[i])) {
+		if (trimmed_s[i++] == '-') {
+			sign = -1;
+		}
+		else {
+			return false;
+		}
+	} 
+
+	for(i; i<strlen(trimmed_s); i++) {
+		if (! char_isNumber(trimmed_s[i])) {
+			return false;
+		}
+		else {
+			result *= 10;
+			result += trimmed_s[i] - NUMBERS_START;
+		}
+	}
+
+	free(trimmed_s);
+
+	*out = sign * result;
+
+	return true;
 }
 
 /* 
