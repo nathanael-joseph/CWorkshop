@@ -22,19 +22,19 @@ typedef Bitmap_128 Set;
 /* --- FUNCTION DECLARATIONS ------------------------------ */
 
 /* returns a new set struct, an empty set */
-Set *setInit();
+Set *set_init();
 /* adds argument x to the set */
-void setInsert(void *set, int x);
+void set_insert(void *set, int x);
 /* returns true if the set contains x, false otherwise */
-Boolean setContains(void *set, int x);
+Boolean set_contains(void *set, int x);
 /* returns a new set that is the union of set_a and set_b */
-Set *setUnion(void *set_a, void *set_b);
+Set *set_union(void *set_a, void *set_b);
 /* returns a new set that is the intersect of set_a and set_b */
-Set *setIntersect(void *set_a, void *set_b);
+Set *set_intersect(void *set_a, void *set_b);
 /* returns a new set that is (set_a \ set_b) */
-Set *setSubtract(void *set_a, void *set_b);
+Set *set_subtract(void *set_a, void *set_b);
 /* returns a new set that is the symetric differense of set_a and set_b */
-Set *setSymetricDifference(void *set_a, void *set_b);
+Set *set_symetricDifference(void *set_a, void *set_b);
 
 
 /* functions to implement for code parser

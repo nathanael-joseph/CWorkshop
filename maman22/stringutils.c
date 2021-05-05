@@ -28,7 +28,7 @@ Boolean string_tryParseInt(const String s, int *out) {
 		}
 	} 
 
-	for(i; i<strlen(trimmed_s); i++) {
+	while(i < strlen(trimmed_s)) {
 		if (! char_isNumber(trimmed_s[i])) {
 			return false;
 		}
@@ -36,6 +36,8 @@ Boolean string_tryParseInt(const String s, int *out) {
 			result *= 10;
 			result += trimmed_s[i] - NUMBERS_START;
 		}
+
+		 i++;
 	}
 
 	free(trimmed_s);

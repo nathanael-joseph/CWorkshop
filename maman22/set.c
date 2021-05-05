@@ -13,25 +13,25 @@ Assignment: Maman 22 Question 1
 /* --- FUNCTION DEFINITIONS ----------------------------------------- */
 
 /* returns a new set struct (an empty set) */
-Set *setInit() {
+Set *set_init() {
 	return bitmap_128_init();
 }
 /* adds argument x to the set */
-void setInsert(void *set, int x) {
-	setBit(set, x);
+void set_insert(void *set, int x) {
+	bitmap_128_setBit(set, x);
 }
 /* returns true if the set contains x, false otherwise */
-Boolean setContains(void *set, int x) {
-	return getBit(set, x);
+Boolean set_contains(void *set, int x) {
+	return bitmap_128_getBit(set, x);
 }
 /* returns a new set that is the union of set_a and set_b */
-Set *setUnion(void *set_a, void *set_b) {
+Set *set_union(void *set_a, void *set_b) {
 	Set *result, *A, *B;
 	int i;
 
 	A = set_a; 
 	B = set_b; 
-	result = setInit();
+	result = set_init();
 
 	for(i = 0; i < WORD_COUNT; i++) {
 		result->words[i] = A->words[i] | B->words[i];
@@ -41,13 +41,13 @@ Set *setUnion(void *set_a, void *set_b) {
 
 }
 /* returns a new set that is the intersect of set_a and set_b */
-Set *setIntersect(void *set_a, void *set_b) {
+Set *set_intersect(void *set_a, void *set_b) {
 	Set *result, *A, *B;
 	int i;
 
 	A = set_a; 
 	B = set_b; 
-	result = setInit();
+	result = set_init();
 
 	for(i = 0; i < WORD_COUNT; i++) {
 		result->words[i] = A->words[i] & B->words[i];
@@ -56,13 +56,13 @@ Set *setIntersect(void *set_a, void *set_b) {
 	return result;
 }
 /* returns a new set that is (set_a \ set_b) */
-Set *setSubtract(void *set_a, void *set_b) {
+Set *set_subtract(void *set_a, void *set_b) {
 	Set *result, *A, *B;
 	int i;
 
 	A = set_a; 
 	B = set_b; 
-	result = setInit();
+	result = set_init();
 
 	for(i = 0; i < WORD_COUNT; i++) {
 		result->words[i] = A->words[i] & (~B->words[i]); 
@@ -71,13 +71,13 @@ Set *setSubtract(void *set_a, void *set_b) {
 	return result;
 }
 /* returns a new set that is the symetric differense of set_a and set_b */
-Set *setSymetricDifference(void *set_a, void *set_b) {
+Set *set_symetricDifference(void *set_a, void *set_b) {
 	Set *result, *A, *B;
 	int i;
 
 	A = set_a; 
 	B = set_b; 
-	result = setInit();
+	result = set_init();
 
 	for(i = 0; i < WORD_COUNT; i++) {
 		result->words[i] = 

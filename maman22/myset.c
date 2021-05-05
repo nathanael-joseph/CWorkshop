@@ -15,12 +15,12 @@ Assignment: Maman 22 Question 1
 int main() {
 
 	int i;
-	String test = "-  405    ";
-	Boolean b = string_tryParseInt(test, &i);
-
-	printf("success = [%d],  i = [%d] \n",b,i);
-
-
+	String test = "		";
+	/* Boolean b = string_tryParseInt(test, &i);
+	
+	 printf("success = [%d],  i = [%d] \n",b,i); */
+	
+	printf("trimmed = [%s]", string_trim(test));
 	return 0;
 }
 /* --- FUNCTION DEFINITIONS ----------------------------------------- */
