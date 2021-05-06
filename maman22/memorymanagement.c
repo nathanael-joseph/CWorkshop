@@ -33,7 +33,6 @@ void *mm_calloc(size_t nitems, size_t size) {
 	if((ptr = calloc(nitems, size)) == NULL) {
 		em_throwMemoryAllocationErorr();	/* will call exit(-1) */
 	} 
-
 	return ptr;
 }
 

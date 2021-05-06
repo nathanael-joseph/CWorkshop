@@ -1,7 +1,7 @@
 /*
 -------------------------------------------------------------------------------
 Author: Nathanael J Y
-Last Modified: 17/04/2021
+Last Modified: 06/05/2021
 Written for: The Open University Of Israel
 Course: 20465 - C Programming Workshop
 Assignment: Maman 22 Question 1
@@ -19,7 +19,7 @@ Bitmap_128 *bitmap_128_init() {
 	return bm;
 }
 /* returns the value of a single bit in the bitmap for a given index */
-int bitmap_128_getBit(void *bitmap, int index) {
+int bitmap_128_getBit(const void *bitmap, int index) {
 	Bitmap_128 *bm = bitmap;
 	unsigned int mask = 1 << BIT_OFFSET(index);
 	return ((bm->words[WORD_OFFSET(index)]) & mask) >> BIT_OFFSET(index);
@@ -35,4 +35,13 @@ void bitmap_128_clearBit(void *bitmap, int index) {
 	Bitmap_128 *bm = bitmap;
 	unsigned int mask = ~(1 << BIT_OFFSET(index));
 	bm->words[WORD_OFFSET(index)] &= mask;
+}
+/* copies the contents of bitmap_b into bitmap_a */
+void bitmap_128_copy(void *bitmap_a, const void *bitmap_b) {
+	int i;
+	Bitmap_128 *a = bitmap_a, *b = bitmap_b;
+
+	for(i = 0; i < WORD_COUNT; i++) {
+		a->words[i] = b->words[i];
+	}
 }

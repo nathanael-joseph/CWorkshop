@@ -24,3 +24,39 @@ int main(int argc, char** argv) {
 }
 /* --- FUNCTION DEFINITIONS ----------------------------------------- */
 
+/* returns a pointer to the set with the specified name,
+or null if the set name does not exist */
+Set *getSet(String name) {
+	static Boolean init = false;
+	static Set *A, *B, *C, *D, *E, *F;
+	if(!init) {
+		A = set_init();
+		B = set_init();
+		C = set_init();
+		D = set_init();
+		E = set_init();
+		F = set_init();
+		init = true;
+	}
+	 /* TODO */
+	return A;
+}
+
+/* Returns a pointer to the next line in stdin, without 
+the ending '\n' character, or null if there are no more lines
+to read. Exits if a line is too long.
+Memory safe - no malloc/free required.
+*/
+String readLine() {
+
+	static char str[MAX_LINE_LENGTH];
+	char *newline;
+
+	fgets(str, MAX_LINE_LENGTH,stdin);
+
+	if((newline = strchr(str,'\n')) != NULL) {
+		*newline = '\0';
+	}
+
+	return str;
+}

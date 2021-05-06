@@ -12,6 +12,13 @@ Assignment: Maman 22 Question 1
 
 /* --- FUNCTION DEFINITIONS ----------------------------------------- */
 
+/* returns true if the the strings a and b are equivilant, false otherwise */
+Boolean string_equals(const String a, const String b) {
+	return !strcmp(a,b);
+}
+
+/* Parses the string for an integer, and returns true if successfull, 
+false otherwaise */
 Boolean string_tryParseInt(const String s, int *out) {
 
 	String trimmed_s;
