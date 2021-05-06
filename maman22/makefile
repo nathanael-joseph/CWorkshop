@@ -6,7 +6,7 @@
 # Assignment: Maman 22 Question 1
 #-------------------------------------------------------------------------------
 
-objects = set.o bitmap_128.o stringutils.o charutils.o myset.o 
+objects = memorymanagement.o set.o bitmap_128.o stringutils.o charutils.o myset.o 
 debugFlags = -g -ansi -Wall -pedantic
 
 All: $(objects)
@@ -27,6 +27,9 @@ set.o: set.c set.h
 
 bitmap_128.o: bitmap_128.c bitmap_128.h
 	gcc $(debugFlags) -c bitmap_128.c
+
+memorymanagement.o: memorymanagement.c memorymanagement.h
+	gcc $(debugFlags) -c memorymanagement.c
 
 clean:
 	rm $(objects)

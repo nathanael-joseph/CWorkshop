@@ -12,9 +12,8 @@ Assignment: Maman 22 Question 1
 
 /* --- PRIVATE FUNCTION DECLARATIONS -------------------------------- */
 /* --- MAIN --------------------------------------------------------- */
-int main() {
+int main(int argc, char** argv) {
 
-	int i;
 	String test = "		";
 	/* Boolean b = string_tryParseInt(test, &i);
 	

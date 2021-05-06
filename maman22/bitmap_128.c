@@ -15,7 +15,7 @@ Assignment: Maman 22 Question 1
 /* returns a pointer to a new insatnce of a bitmap, or null if malloc fails */
 Bitmap_128 *bitmap_128_init() {
 	/* calloc ensures that Words is zero'd out */
-	Bitmap_128 *bm = calloc(sizeof(*bm),1);
+	Bitmap_128 *bm = calloc(1,sizeof(*bm));
 	return bm;
 }
 /* returns the value of a single bit in the bitmap for a given index */

@@ -13,11 +13,13 @@ Assignment: Maman 22 Question 1
 /* --- FUNCTION DEFINITIONS ----------------------------------------- */
 
 Boolean string_tryParseInt(const String s, int *out) {
-	/* TODO */
 
+	String trimmed_s;
 	int result, sign, i;
 	result = 0; sign = 1; i = 0;
-	String trimmed_s = string_trim(s);
+	
+
+	trimmed_s = string_trim(s);
 
 	if (! char_isNumber(trimmed_s[i])) {
 		if (trimmed_s[i++] == '-') {
@@ -56,7 +58,7 @@ int string_split(const String s, char deliminator, String **out) {
 
 	int delimCounter = 0;
 	int i, j, k;
-	String temp = calloc(sizeof(*temp),1);
+	String temp = calloc(1, sizeof(*temp));
 
 	for(i = 0; i < strlen(s); i++) {
 		if (s[i] == deliminator) {
@@ -64,7 +66,7 @@ int string_split(const String s, char deliminator, String **out) {
 		}
 	}
 
-	*out = calloc(sizeof(**out), delimCounter + 1);
+	*out = calloc(delimCounter + 1, sizeof(**out));
 
 	/*	i = index of deliminator, 
 		j = beginning of substring, 
@@ -111,7 +113,7 @@ String string_trim(const String s) {
 
 	resultLength = right - left + 1;
 
-	result = calloc(sizeof(*result), resultLength + 1);
+	result = calloc(resultLength + 1, sizeof(*result));
 	result = strncpy(result, s + left, resultLength);
 
 	return result;

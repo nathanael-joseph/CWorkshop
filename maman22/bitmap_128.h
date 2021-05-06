@@ -12,6 +12,7 @@ Assignment: Maman 22 Question 1
 #define BITMAP_H
 
 #include <stdlib.h>
+#include "memorymanagement.h"
 
 /* --- CONSTANTS/MACROS ----------------------------------- */
 

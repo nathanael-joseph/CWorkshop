@@ -14,6 +14,7 @@ Assignment: Maman 22 Question 1
 #include <stdio.h>  /* remove this later */
 #include <string.h>
 #include <stdlib.h>
+#include "memorymanagement.h"
 #include "charutils.h"
 
 
