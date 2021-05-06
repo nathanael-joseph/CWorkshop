@@ -12,7 +12,7 @@ Assignment: Maman 22 Question 1
 #define SET_H
  
 #include "bitmap_128.h"
-#include "boolean.h"
+#include "moretypes.h"
 
 /* --- CONSTANTS ------------------------------------------ */
 /* --- TYPE DEFINITIONS ----------------------------------- */

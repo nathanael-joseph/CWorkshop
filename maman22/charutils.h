@@ -11,7 +11,7 @@ Assignment: Maman 22 Question 1
 #ifndef CHARUTILS_H
 #define CHARUTILS_H
 
-#include "boolean.h"
+#include "moretypes.h"
 
 
 /* --- CONSTANTS ------------------------------------------ */

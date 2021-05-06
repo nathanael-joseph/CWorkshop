@@ -12,7 +12,7 @@ Assignment: Maman 22 Question 1
 #define MYSET_H
 
 #include <stdio.h>
-#include "boolean.h"
+#include "moretypes.h"
 #include "stringutils.h"
 
 /* --- CONSTANTS ------------------------------------------ */

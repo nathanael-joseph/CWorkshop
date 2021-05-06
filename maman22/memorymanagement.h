@@ -13,6 +13,7 @@ Assignment: Maman 22 Question 1
 
 #include <stdlib.h>
 #include <stdio.h>
+#include "errormanagement.h"
 
 /* 
 This header file overrides the malloc, realloc, and calloc functions.

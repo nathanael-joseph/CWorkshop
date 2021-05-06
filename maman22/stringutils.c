@@ -16,9 +16,8 @@ Boolean string_tryParseInt(const String s, int *out) {
 
 	String trimmed_s;
 	int result, sign, i;
-	result = 0; sign = 1; i = 0;
-	
 
+	result = 0; sign = 1; i = 0;
 	trimmed_s = string_trim(s);
 
 	if (! char_isNumber(trimmed_s[i])) {
