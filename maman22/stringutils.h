@@ -42,9 +42,9 @@ with all leading and trailing whitespace characters reoved
 String string_trim(const String s);
 
 /* 
-places an array of strings to "out" parameter, where each element is 
-a sdubstring of s, split by the deliminator, 
-and returns the number of elements in the array.
+Places an array of strings to "out" parameter, where each element is 
+a substring of s, split by the deliminator and then trimmed.
+Returns the number of elements in the array.
 */
 int string_split(const String s, char deliminator, String **out);
 

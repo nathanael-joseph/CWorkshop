@@ -8,7 +8,7 @@ Assignment: Maman 22 Question 1
 -------------------------------------------------------------------------------
 */
 
-#include "stringutils.h"
+#include "charutils.h"
 
 /* ---  LOCAL CONSTANTS ---------------------------------------- */
 

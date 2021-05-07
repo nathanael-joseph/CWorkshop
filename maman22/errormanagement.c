@@ -19,6 +19,10 @@ void em_throwMemoryAllocationErorr() {
 	exit(MEM_ALLOC_ERR);
 }
 /* Prints an error message to stderr, does not exit */
+void em_throwInvalidArgumentCountError() {
+	fprintf(stderr, "Invalid number of arguments provided.\nSkipping statement... \n");
+}
+/* Prints an error message to stderr, does not exit */
 void em_throwInvalidArgumentError(String argument) {
 	fprintf(stderr, "[%s] is not a valid argument. \nSkipping statement... \n", argument);
 }
