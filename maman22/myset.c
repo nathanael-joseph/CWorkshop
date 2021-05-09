@@ -1,7 +1,7 @@
 /*
 -------------------------------------------------------------------------------
 Author: Nathanael J Y
-Last Modified: 17/04/2021
+Last Modified: 08/05/2021
 Written for: The Open University Of Israel
 Course: 204equals65 - C Programming Workshop
 Assignment: Maman 22 Question 1
@@ -21,6 +21,10 @@ int main(int argc, char **argv) {
 		executeLine(line, &stop);
 		if (stop) 
 			break;
+	}
+
+	if(!stop) {
+		em_throwInvalidTerminationError();
 	}
 
 	return 0;
@@ -60,19 +64,19 @@ void executeLine(String line, Boolean *stop) {
 	} 
 	else if (string_equals(functionName, PRINT_SET)) {
 		executePrintSet(trimmedLine + firstWhitespaceIndex);
-	} /*
+	}
 	else if (string_equals(functionName, UNION_SET)) {
-		executeUnionSet(trimmedLine + firstWhitespaceIndex);	
+		executeSetArithmatic(trimmedLine + firstWhitespaceIndex, set_union);	
 	} 
 	else if (string_equals(functionName, INTERSECT_SET)) {
-		executeIntersectSet(trimmedLine + firstWhitespaceIndex);
+		executeSetArithmatic(trimmedLine + firstWhitespaceIndex, set_intersect);
 	} 
 	else if (string_equals(functionName, SUB_SET)) {
-		executeSubSet(trimmedLine + firstWhitespaceIndex);
+		executeSetArithmatic(trimmedLine + firstWhitespaceIndex, set_subtract);
 	} 
 	else if (string_equals(functionName, SYMDIFF_SET)) {
-		executeSymDiffSet(trimmedLine + firstWhitespaceIndex);
-	} */
+		executeSetArithmatic(trimmedLine + firstWhitespaceIndex, set_symetricDifference);
+	}
 	else if (string_equals(functionName, STOP)) {
 		*stop = true;
 	} 
@@ -184,20 +188,49 @@ void executePrintSet(String argsCSV) {
 	free(args); 
 	return;
 }
+
 /* Parses the function arguments from the String CSV and 
-executes union_set if possible, else prints an error message */
-void executeUnionSet(String argsCSV);
-/* Parses the function arguments from the String CSV and 
-executes intersect_set if possible, else prints an error message */
-void executeIntersectSet(String argsCSV);
-/* Parses the function arguments from the String CSV and 
-executes sub_set if possible, else prints an error message */
-void executeSubSet(String argsCSV);
-/* Parses the function arguments from the String CSV and 
-executes symdiff_set if possible, else prints an error message */
-void executeSymDiffSet(String argsCSV);
+executes the arithmatic function passed if possible, 
+else prints an error message */
+void executeSetArithmatic(String argsCSV, SetArithmaticFunctionPtr fnc) {
+	const int REQ_ARG_COUNT = 3;
+	Set **setArgs, *temp;
+	String *args;
+	int argCount, i;
+
+	setArgs = calloc(REQ_ARG_COUNT, sizeof(*setArgs));
+	argCount = string_split(argsCSV, ',', &args);
+
+	/* check for the right number of arguments */
+	if (argCount != REQ_ARG_COUNT) {
+		em_throwInvalidArgumentCountError();
+		goto finish;
+	}
 
 
+	/* check each arg is a set */
+	for (i = 0; i < REQ_ARG_COUNT; i++) {
+		if ((setArgs[i] = getSet(args[i])) == NULL) {
+			em_throwInvalidArgumentError(args[i]);
+			goto finish;
+		} 		
+	}
+
+	/* all good */
+
+	temp = (*fnc)(setArgs[0],setArgs[1]); /* reterns new set */
+	set_copy(setArgs[2], temp);
+	free(temp);
+
+	finish:
+	/* free args */
+	for(i = 0; i < argCount; i++) {
+		free(args[i]);
+	}
+	free(args); 
+	free(setArgs);
+	return;
+}
 
 
 /* returns a pointer to the set with the specified name,
@@ -243,6 +276,10 @@ String readLine() {
 	static char line[MAX_LINE_LENGTH];
 	char *newlineCharPtr;
 
+	if(feof(stdin)) {
+		return NULL;
+	}
+
 	fgets(line, MAX_LINE_LENGTH,stdin);
 
 	/* remove the new line '\n' char is there is one */
@@ -256,14 +293,18 @@ String readLine() {
 /* prints the contents of the set to stdin, or "set is empty" */
 void printSet(void *set) {
 	Set *s = set;
-	int i;
+	int i, memberCount;
 	if (set_isEmpty(s)) {
-		printf("Emmpty set\n");
+		printf("The set is Empty.\n");
 	} else {
-		printf("{");
-		for(i = 0; i < SET_UBOUND; i++) {
+		printf("{ ");
+		for(i = 0, memberCount = 0; i < SET_UBOUND; i++) {
 			if(set_contains(s, i)) {
-				printf("[%d]",i+1);
+				memberCount++;
+				printf("% 3d ",i+1);
+				if((memberCount%10) == 0) {
+					printf("\n  ");
+				}						
 			}
 		}
 		printf("}\n");

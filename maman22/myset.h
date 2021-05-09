@@ -1,7 +1,7 @@
 /*
 -------------------------------------------------------------------------------
 Author: Nathanael J Y
-Last Modified: 17/04/2021
+Last Modified: 08/05/2021
 Written for: The Open University Of Israel
 Course: 20465 - C Programming Workshop
 Assignment: Maman 22 Question 1
@@ -42,6 +42,11 @@ Assignment: Maman 22 Question 1
 
 /* --- TYPE DEFINITIONS ----------------------------------- */
 
+/* pointer to a function that takes two pointers as arguments,
+and returns a Set pointer */
+typedef Set *(*SetArithmaticFunctionPtr)(void * , void *);
+
+
 /* --- FUNCTION DECLARATIONS ------------------------------ */
 
 /* Parses the line of text, and executes the command if possible,
@@ -54,17 +59,9 @@ void executeReadSet(String argsCSV);
 executes print_set if possible, else prints an error message */
 void executePrintSet(String argsCSV);
 /* Parses the function arguments from the String CSV and 
-executes union_set if possible, else prints an error message */
-void executeUnionSet(String argsCSV);
-/* Parses the function arguments from the String CSV and 
-executes intersect_set if possible, else prints an error message */
-void executeIntersectSet(String argsCSV);
-/* Parses the function arguments from the String CSV and 
-executes sub_set if possible, else prints an error message */
-void executeSubSet(String argsCSV);
-/* Parses the function arguments from the String CSV and 
-executes symdiff_set if possible, else prints an error message */
-void executeSymDiffSet(String argsCSV);
+executes the arithmatic function passed if possible, 
+else prints an error message */
+void executeSetArithmatic(String argsCSV, SetArithmaticFunctionPtr fptr);
 
 
 /* returns a pointer to the set with the specified name,

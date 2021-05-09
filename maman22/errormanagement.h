@@ -29,6 +29,8 @@ Assignment: Maman 22 Question 1
 /* Prints an error message to stderr, and exits the program. */
 void em_throwMemoryAllocationErorr();
 /* Prints an error message to stderr, does not exit */
+void em_throwInvalidArgumentCountError();
+/* Prints an error message to stderr, does not exit */
 void em_throwInvalidArgumentError(String argumentName);
 /* Prints an error message to stderr, does not exit */
 void em_throwInvalidFunctionError(String functionName);

@@ -42,7 +42,6 @@ Set *set_union(void *set_a, void *set_b) {
 	}
 
 	return result;
-
 }
 /* returns a new set that is the intersect of set_a and set_b */
 Set *set_intersect(void *set_a, void *set_b) {

@@ -8,13 +8,11 @@
 
 objects = memorymanagement.o \
 		  errormanagement.o \
-		  set.o \
 		  bitmap_128.o \
-		  stringutils.o \
+		  set.o \
 		  charutils.o \
+		  stringutils.o \
 		  myset.o \
-
-
 
 debugFlags = -g -ansi -Wall -pedantic
 
@@ -48,3 +46,6 @@ clean:
 
 run: All
 	./myset
+
+test: All
+	./myset < tests/test1.txt > tests/test1_result.txt
