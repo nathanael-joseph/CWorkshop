@@ -1,2 +1,4 @@
 # CWorkshop
-Collection of programming assignments in C
+A collection of programming assignments in C.
+
+
