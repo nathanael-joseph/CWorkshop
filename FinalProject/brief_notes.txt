@@ -1,0 +1,166 @@
+
+ATTRIBUTES
+==========
+.entry .external - need to record which tags have these attributs for .ent and .ext files
+
+SUGGESTED ATTRIBUTES : .code .data (the datastructure storing the tags should record 
+whether a tag is for the data segement or the code segement)
+
+
+TAGS
+====
+- can be for either code segment or data segment, and can also have* .entry or .external attribute.
+- tags appear before a command like so :
+	tag_name: cmd arg1, .., argn
+
+*	A tag cannot have both the .entry and .external attribute in the same file. 
+	A tag can have no attribute (if it is defined in the file).
+
+
+INSTRUCTIONS
+============
+Instructions are encoded into binary differently based on their type {R, I, J}
+Each instruction along with it's arguments are encoded in a single word (32 bits, little endian)
+The starting address of the code segment is  100.
+Each instruction requires 4 bytes -> 4 addresses.
+
+R (register) instructions
+---------------------
+
+Two types of R commands 1) math/logic commands 
+						2) copy commands
+
+WORD binary:
+|31 - opcode - 26|25 - rs - 21|20 - rt - 16|15 - rd - 11|10 - funct - 6|5 - /// - 0| 
+
+1) cmd_math rs, rt, rd :
+- add
+- sub 
+- and
+- or
+- nor
+
+2) cmd_copy rd, rs :
+- move
+- mvlo
+- mvhi
+
+
+I (immediate) instructions
+----------------------
+
+Three types of I commands 	1) math/logic commands 
+							2) coconditional jump commands
+							3) memory load/save commands
+
+WORD binary:
+|31 - opcode - 26|25 - rs - 21|20 - rt - 16|15 - immediate - 0| 
+
+1) cmd_mathi rs, immediate, rt :
+- addi
+- subi 
+- andi
+- ori
+- nori
+
+2) cmd_cjmp rs, rt, (TAG / immediate )* ** :
+- beq
+- bne
+- blt
+- bgt
+
+*	immediate is the relative address of the tag [tag address - current address]
+	and will be evaluated at compile time. (warn if tag references data segment?)
+**	TAG must be defined in this file, .external TAG is illegal.
+
+3) cmd_ldsv rs, immediate, rt :
+- lw
+- lh
+- lb
+- sw
+- sh
+- sb
+
+
+J (jump) instructions
+-----------------
+
+Three types of J commands 	1) reg flag in {0, 1}
+							2) reg flag == 0
+							3) stop.
+							
+WORD binary:
+|31 - opcode - 26|25 - reg* - 25|24 - address - 0| 
+
+*	reg is a single bit:	0 <=> address is tag to be evaluated at compile time.
+							1 <=> address arg is a $register. 
+
+1) cmd_wreg* address / $address :
+- jmp*
+- la
+
+* (consider warning for data segment address as jmp arg)
+
+2) cmd_woreg address : 
+- call
+
+3) stop *
+
+* no argumnets. reg flag -> 0, address -> 0
+
+
+
+DATA INSTRUCTIONS
+=================
+
+The data segment begins immediately after the code segment
+so the base address is calculated at compile time.
+
+There are 4 data instructions
+
+args can be positive or negative integers only :
+- .db ...args => write a byte in data segment for each arg.
+- .dh ...args => write two bytes in data segment for each arg.
+- .dw ...args => write four bytes in data segment for each arg.
+
+arg is a string :
+- .asciz "string argument" => stores the string + the ending 0 byte at the end.
+
+
+
+ARCHITECTURE
+============
+
+- There are 32 registers, which can be refered to by $0, $1, ... , $31.
+- The total memeory size is 2^25 bytes. Addresses [0-99] are reserverved for OS.
+- The program's data segment cannot finnish past address (2^25) - 1 = 33554431
+
+
+APPROACH
+========
+Proccess the input file twice. 
+
+First pass:
+- Add all TAGS and their attributes / address to a hashtable.
+- Code validation. Check all possible wrong arguments, naming conventions, etc.
+- if any errors are found, display relevant message to stdout and set FAIL flag.
+- If the first pass is successfull go to second pass, else end.
+
+Second pass:
+- convert code and data to binary in dynamic buffer or linked list, and write .ent and .ext files.
+- optional - check tags do not violate segments e.g. call data_tag.
+- write code and data segments to .obj file.
+
+
+three hash tables
+1 for commands, 1 for directives, 1 for tags
+
+4 linkedlist buffers 1 for code segment words, 1 for data segement, 1 for entry file, 1 for extern file
+
+Additional state variables: 
+- code segment current address (offset)
+- data segement current address (offset) 
+- has fatal error
+- current file name
+- current line number 
+
