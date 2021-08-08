@@ -32,6 +32,7 @@ Boolean String_tryParseInt(const String s, int *out) {
 			sign = -1;
 		}
 		else if (trimmed_s[i] != '+') {
+			free(trimmed_s);
 			return false;
 		}
 
@@ -40,6 +41,7 @@ Boolean String_tryParseInt(const String s, int *out) {
 
 	while(i < strlen(trimmed_s)) {
 		if (! char_isNumber(trimmed_s[i])) {
+			free(trimmed_s);
 			return false;
 		}
 		else {
@@ -50,10 +52,11 @@ Boolean String_tryParseInt(const String s, int *out) {
 		 i++;
 	}
 
-	free(trimmed_s);
+	
 
 	*out = sign * (*out);
 
+	free(trimmed_s);
 	return true;
 }
 

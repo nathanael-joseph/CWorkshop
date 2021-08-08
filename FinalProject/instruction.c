@@ -787,6 +787,7 @@ void *Instruction_getInstructionDictionary() {
 		}
 	}
 
+	fclose(filePtr);
 	return instructionDict;
 }
 
