@@ -99,8 +99,8 @@ static void singleLineFirstPass(String line) {
 	Dictionary *directiveDict; 
 
 	LabelData *labelData;
-	InstructionData *instructionData;
-	DirectiveData *directiveData;
+	InstructionData *instructionData = NULL;
+	DirectiveData *directiveData = NULL;
 
 	trimmedLine = line;
 	while(char_isWhitespace(*trimmedLine)) {

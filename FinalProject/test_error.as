@@ -6,7 +6,7 @@
 MAIN: add $3,$5,$9
 
 jmp flex
-sometag: stop
+sometag: stop $4
 
 sometag: stop
 
@@ -14,10 +14,13 @@ sometag: stop
 
 dtag: .dh 33,2340003, $12
 
-.dw 90000000000000
-
+.dw word, 5, 6, shnitzel eqr9j
+.dh , 
+call flex
+jmp $5
+call dtag
 .asciz "this is not a valid "string " "
 
 add $55, $56,     $78
-
+la d
 jmp dtag

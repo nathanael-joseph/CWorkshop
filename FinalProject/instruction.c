@@ -514,6 +514,7 @@ static void I_2_encode(void *instructionData, String args) {
 	labelDict = AssemblerState_getLabelDictionary();
 	labeldata = Dictionary_getValue(labelDict, argsArr[2]);
 
+
 	/* 
 	WORD binary:
 	|31 - opcode - 26|25 - rs - 21|20 - rt - 16|15 - immediate - 0| 
@@ -526,14 +527,17 @@ static void I_2_encode(void *instructionData, String args) {
 
 	*/
 
+
+
+
 	/* absolute address is 0 if extern, -1 if undefined */
-	if( LabelData_getAbsoluteAddress(labeldata) <= 0 ) {
+	if( (!labeldata) || LabelData_getAbsoluteAddress(labeldata) <= 0 ) {
 		sprintf(msg,
 				 "The label '%s' is not defined locally, and cannot be used.",
 				  argsArr[2]);
 		el_logAssemblyErrorDefault(msg, FATAL);
 		AssemblerState_addFatalError();
-		return;
+		goto I_2_encode_exit;
 	}
 
 	immediateAddress = labeldata->segmentAddress - AssemblerState_getCurrentCodeSegmentAddress();
@@ -545,7 +549,7 @@ static void I_2_encode(void *instructionData, String args) {
 				  argsArr[2]);
 		el_logAssemblyErrorDefault(msg, FATAL);
 		AssemblerState_addFatalError();
-		return;
+		goto I_2_encode_exit;
 	}
 	
 	/* warn if label refers to data segment */
@@ -571,6 +575,8 @@ static void I_2_encode(void *instructionData, String args) {
 	word |= (mask << 26);
 
 	writeWordToCodeSegmentBufferLittleEndian(word);
+
+I_2_encode_exit:
 
 	for(i = 0; i < argCount; i++) {
 		free(argsArr[i]);
@@ -612,7 +618,7 @@ static void J_1_encode(void *instructionData, String args) {
 					  arg);
 			el_logAssemblyErrorDefault(msg, FATAL);
 			AssemblerState_addFatalError();
-			return;
+			goto J_1_encode_exit;
 		}
 
 		/* warn if label refers to data segment - special no warning for la */
@@ -651,6 +657,7 @@ static void J_1_encode(void *instructionData, String args) {
 
 	writeWordToCodeSegmentBufferLittleEndian(word);
 
+J_1_encode_exit:
 	free(arg);
 }
 
