@@ -49,7 +49,7 @@ static void ASCIZ_encode(String argTrimmed);
 	validates that at least one arg exists, and all args are integers between
 	the lower bound and the upper bound. 
 */
-static void D_INTEGER_validateArgs(String *argsArr,int argCount, int lowerBound, int upperBound);
+static void D_INTEGER_validateArgs(String *argsArr,int argCount, int32_t lowerBound, int32_t upperBound);
 
 
 /* --- STATIC FUNCTION DEFINITIONS ----------------------- */
@@ -60,8 +60,9 @@ static void D_INTEGER_validateArgs(String *argsArr,int argCount, int lowerBound,
 	validates that at least one arg exists, and all args are integers between
 	the lower bound and the upper bound.
 */
-static void D_INTEGER_validateArgs(String *argsArr,int argCount, int lowerBound, int upperBound) {
-	int i, temp;
+static void D_INTEGER_validateArgs(String *argsArr,int argCount, int32_t lowerBound, int32_t upperBound) {
+	int i;
+	int32_t temp;
 	char msg[256];
 	
 	if(argCount == 0) {
@@ -72,10 +73,10 @@ static void D_INTEGER_validateArgs(String *argsArr,int argCount, int lowerBound,
 
 	for(i = 0; i < argCount; i++) {
 
-		if(! String_tryParseInt(argsArr[i], &temp) ) {
+		if(! String_tryParseInt32(argsArr[i], &temp) ) {
 
 			sprintf(msg,
-				 	"the arg '%s' could not be parsed as an integer",
+				 	"the arg '%s' could not be parsed as a 32 bit signed integer",
 				 	argsArr[i]);
 
 			el_logAssemblyErrorDefault(msg, FATAL);
@@ -279,11 +280,12 @@ static void EXTERN_validateArgsAndApply(String args) {
 
 /* Writes a series of bytes to the data segment buffer */
 static void DB_encode(String *argsArr, int argCount) {
-	int i, temp;
+	int i;
+	int32_t temp;
 	Byte byte;
 
 	for(i = 0; i < argCount; i++) {
-		String_tryParseInt(argsArr[i], &temp);
+		String_tryParseInt32(argsArr[i], &temp);
 		byte = temp;
 		AssemblerState_writeByteToDataSegmentBuffer(byte);
 	}
@@ -291,11 +293,12 @@ static void DB_encode(String *argsArr, int argCount) {
 
 /* Writes a series of half words to the data segment buffer in little endian format */
 static void DH_encode(String *argsArr, int argCount) {
-	int i, temp;
+	int i;
+	int32_t temp;
 	Byte byte;
 
 	for(i = 0; i < argCount; i++) {
-		String_tryParseInt(argsArr[i], &temp);
+		String_tryParseInt32(argsArr[i], &temp);
 
 		byte = temp;
 		AssemblerState_writeByteToDataSegmentBuffer(byte);
@@ -307,11 +310,12 @@ static void DH_encode(String *argsArr, int argCount) {
 
 /* Writes a series of words to the data segment buffer in little endian format */
 static void DW_encode(String *argsArr, int argCount) {
-	int i, j, temp;
+	int i, j;
+	int32_t temp;
 	Byte byte;
 
 	for(i = 0; i < argCount; i++) {
-		String_tryParseInt(argsArr[i], &temp);
+		String_tryParseInt32(argsArr[i], &temp);
 		
 		for(j=0; j < 32; j += 8) {
 			byte = (temp >> j);

@@ -16,6 +16,7 @@ Assignment: Maman 22 Question 1
 #include "more_types.h"
 #include "system_utils/memory_management.h"
 #include "type_utils/char_utils.h"
+#include "bounds.h"
 
 
 /* --- CONSTANTS ------------------------------------------ */
@@ -32,8 +33,12 @@ Assignment: Maman 22 Question 1
 Boolean String_equals(const String a, const String b);
 
 /* Parses the string for an integer, and returns true if successfull, 
-false otherwaise */
+false otherwaise -- DEPRECIATED - USE tryParseInt32 */
 Boolean String_tryParseInt(const String s, int *out);
+
+/* Parses the string for an integer, and returns true if successfull, 
+false otherwaise - returns false also in case of overflow */
+Boolean String_tryParseInt32(const String s, int32_t *out);
 
 /* 
 returns the a new string, equivilant to  the argument string s,

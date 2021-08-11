@@ -41,6 +41,7 @@ static void writeOutputFiles();
 int main (int argc, char **argv) {
 	int i, j;
 
+	/* array of void function() pointers */
 	Action pipeline[PIPELINE_ACTION_COUNT] = {
 		runFirstPass,
 		AssemblerState_finalizeFirstPass,

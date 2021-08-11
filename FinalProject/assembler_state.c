@@ -99,7 +99,7 @@ void AssemblerState_set(String filename) {
 		_state->hasFatalError = true;
 
 		sprintf(msg,
-			 	"The file %s does not have the required '.asm' file extension ",
+			 	"The file %s does not have the required '.as' file extension ",
 			 	filename);
 		el_logSystemError(msg, FATAL);
 
@@ -159,7 +159,7 @@ void AssemblerState_reset(String filename) {
 		_state->hasFatalError = true;
 
 		sprintf(msg,
-			 	"The file %s does not have the required '.asm' file extension ",
+			 	"The file %s does not have the required '.as' file extension ",
 			 	filename);
 		el_logSystemError(msg, FATAL);
 

@@ -60,6 +60,60 @@ Boolean String_tryParseInt(const String s, int *out) {
 	return true;
 }
 
+/* Parses the string for an integer, and returns true if successfull, 
+false otherwaise - returns false also in case of overflow */
+Boolean String_tryParseInt32(const String s, int32_t *out) {
+
+	String trimmed_s;
+	int32_t sign, i;
+
+	*out = 0; sign = 1; i = 0;
+	trimmed_s = String_trim(s);
+
+	if (! char_isNumber(trimmed_s[i])) {
+		if (trimmed_s[i] == '-') {
+			sign = -1;
+		}
+		else if (trimmed_s[i] != '+') {
+			goto Exit_False;
+		}
+
+		i++;
+	} 
+
+	while(i < strlen(trimmed_s)) {
+		if (! char_isNumber(trimmed_s[i])) {
+			goto Exit_False;
+		}
+		else if(*out <= (WORD_U_BOUND)/10) {
+
+			*out *= 10;
+			*out += trimmed_s[i] - NUMBERS_START;
+
+			if((*out < 0 && sign == 1) || ((*out - 1) < 0 && sign == -1) ) {
+				/* overflow */
+				goto Exit_False;
+			}
+
+		} else {
+			/* overflow */
+			goto Exit_False;
+		}
+
+		 i++;
+	}
+	
+
+	*out = sign * (*out);
+
+	free(trimmed_s);
+	return true;
+
+Exit_False:
+	free(trimmed_s);
+	return false;
+}
+
 /* 
 Places an array of strings to "out" parameter, where each element is 
 a substring of s, split by the deliminator and then trimmed.

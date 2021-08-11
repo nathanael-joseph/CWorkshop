@@ -37,14 +37,3 @@ la,     J, 31, 0, 1
 call,   J, 32, 0, 2
 # J type 3
 stop,   J, 63, 0, 3 
-# directives no longer managed as instructions --- ignore
-# ----------------------------------
-# D type 
-#.db,    D,  0, 0, 0
-#.dh,    D,  0, 0, 0
-#.dw,    D,  0, 0, 0
-#.asciz, D,  0, 0, 0
-# ----------------------------------
-# A type 
-#.entry, A,  0, 0, 0
-#.extern,A,  0, 0, 0

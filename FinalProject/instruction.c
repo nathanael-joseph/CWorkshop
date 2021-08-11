@@ -74,7 +74,7 @@ static void writeWordToCodeSegmentBufferLittleEndian(Word word);
 
 /* returns true if the string arg represents a valid register, false otherwise */
 static Boolean isValidRegister(String arg) {
-	int regNumber, i;
+	int32_t regNumber, i;
 	String regNumberStr;
 
 	if(arg[0] == '$') {
@@ -86,7 +86,7 @@ static Boolean isValidRegister(String arg) {
 			}
 		}
 
-		if(String_tryParseInt(regNumberStr, &regNumber)) {
+		if(String_tryParseInt32(regNumberStr, &regNumber)) {
 			if(0 <= regNumber && regNumber <= 31 ) {
 				return true;
 			}
@@ -101,9 +101,9 @@ static Boolean isValidRegister(String arg) {
 	between - 2^15 and 2^15 -1, false otherwise.
 */
 static Boolean isValidImmediate(String arg) {
-	int immed;
+	int32_t immed;
 
-	if(String_tryParseInt(arg, &immed)) {
+	if(String_tryParseInt32(arg, &immed)) {
 		if( HALF_L_BOUND <= immed && immed <= HALF_U_BOUND) {
 			return true;
 		}
@@ -122,10 +122,10 @@ static int getRegisterNumber(String arg) {
 }
 
 /* returns the numeric value of the immediate arg string. */
-static int getImmediateNumber(String arg) {
+static int32_t getImmediateNumber(String arg) {
 	/* use only after validation */
-	int immed;
-	String_tryParseInt(arg, &immed);
+	int32_t immed;
+	String_tryParseInt32(arg, &immed);
 
 	return immed;
 }
